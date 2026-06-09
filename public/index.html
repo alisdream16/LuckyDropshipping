@@ -149,19 +149,52 @@
         <!-- SCANNER VIEW -->
         <section class="view" id="view-scanner">
           <div class="scanner-panel">
-            <div class="search-row">
-              <input type="text" id="searchInput" placeholder="Örn: stainless steel ring customizable engraved">
-              <button class="btn-primary" id="searchBtn">Ara & Karşılaştır</button>
+            <div class="panel-header" style="border:none;padding:0 0 1rem">
+              <div>
+                <h2>Akıllı Filtre & Eşleştirme</h2>
+                <p>Satış, marj, kargo, ABD bölgesi ve birlikte alınan ürün analizi</p>
+              </div>
             </div>
 
-            <div class="filter-row">
-              <label>Min. sipariş <input type="number" id="minOrders" value="50" min="0"></label>
-              <label>Limit <input type="number" id="limitInput" value="8" min="1" max="20"></label>
-              <label class="check-label"><input type="checkbox" id="hotOnly" checked> Çok satanlar</label>
+            <div class="search-row">
+              <input type="text" id="searchInput" placeholder="Örn: stainless steel ring customizable engraved">
+              <button class="btn-fetch" id="smartFilterBtn">Filtrele & Eşleştir</button>
+            </div>
+
+            <div class="filter-grid">
+              <label><span>Min. sipariş</span><input type="number" id="minOrders" value="50" min="0"></label>
+              <label><span>Max. sipariş</span><input type="number" id="maxOrders" placeholder="∞"></label>
+              <label><span>Min. günlük satış</span><input type="number" id="minDailySales" placeholder="10"></label>
+              <label><span>Max. günlük satış</span><input type="number" id="maxDailySales" placeholder="∞"></label>
+              <label><span>Min. fiyat $</span><input type="number" id="minPrice" step="0.01" placeholder="0"></label>
+              <label><span>Max. fiyat $</span><input type="number" id="maxPrice" step="0.01" placeholder="50"></label>
+              <label><span>Min. puan %</span><input type="number" id="minRating" placeholder="80"></label>
+              <label><span>Min. marj %</span><input type="number" id="minMargin" placeholder="15"></label>
+              <label><span>Max. kargo $</span><input type="number" id="maxShipping" step="0.01" placeholder="5"></label>
+              <label><span>Max. teslimat gün</span><input type="number" id="maxDeliveryDays" placeholder="20"></label>
+              <label><span>Sonuç limiti</span><input type="number" id="limitInput" value="10" min="1" max="30"></label>
+              <label><span>Kargo ülkesi</span>
+                <select id="shipToCountry">
+                  <option value="US" selected>ABD (US)</option>
+                  <option value="CA">Kanada</option>
+                  <option value="GB">İngiltere</option>
+                  <option value="DE">Almanya</option>
+                  <option value="AU">Avustralya</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="filter-toggles">
+              <label class="check-label"><input type="checkbox" id="hotOnly" checked> Sadece çok satanlar</label>
+              <label class="check-label"><input type="checkbox" id="customizableOnly"> Sadece özelleştirilebilir</label>
+            </div>
+
+            <div class="state-filter">
+              <span class="state-filter-label">ABD eyalet filtresi (talep modeli)</span>
+              <div class="state-chips" id="stateChips"></div>
             </div>
 
             <div class="preset-grid" id="presetGrid"></div>
-            <button class="btn-secondary-wide" id="scanAllBtn">Tüm Kategorileri Tara</button>
           </div>
 
           <div class="results-panel">
@@ -197,6 +230,14 @@
           </div>
         </section>
       </main>
+    </div>
+  </div>
+
+  <!-- Ürün Detay Modal -->
+  <div class="modal-overlay hidden" id="productModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
 
