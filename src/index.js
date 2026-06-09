@@ -6,6 +6,7 @@ const config = require('./config');
 const aliexpressRoutes = require('./routes/aliexpress');
 const ebayRoutes = require('./routes/ebay');
 const compareRoutes = require('./routes/compare');
+const dashboardRoutes = require('./routes/dashboard');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.get('/api/config', (req, res) => {
 app.use('/api/aliexpress', aliexpressRoutes);
 app.use('/api/ebay', ebayRoutes);
 app.use('/api/compare', compareRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
