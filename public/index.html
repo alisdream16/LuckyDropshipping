@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuckyDrop — AliExpress × eBay Takı Araştırma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">◆</span>
+        <div>
+          <h1>LuckyDrop</h1>
+          <p class="tagline">Çelik takı dropshipping araştırma aracı</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="status-pills" id="statusPills"></div>
+        <a href="/api/aliexpress/auth" class="btn btn-outline" id="connectBtn">AliExpress Bağlan</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="hero-text">
+        <h2>İyi satan çelik takıları bul,<br><em>eBay ile karşılaştır</em></h2>
+        <p>AliExpress'teki yüksek siparişli ürünleri eBay aktif ilanlarıyla eşleştirir, kâr marjını hesaplar.</p>
+      </div>
+      <div class="callback-info" id="callbackInfo">
+        <span class="label">Callback URL</span>
+        <code id="callbackUrl">yükleniyor...</code>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Örn: stainless steel ring customizable engraved">
+        <button class="btn btn-primary" id="searchBtn">Ara & Karşılaştır</button>
+      </div>
+
+      <div class="filters">
+        <label>
+          Min. sipariş
+          <input type="number" id="minOrders" value="50" min="0">
+        </label>
+        <label>
+          Ürün limiti
+          <input type="number" id="limitInput" value="8" min="1" max="20">
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="hotOnly" checked>
+          Sadece çok satanlar
+        </label>
+      </div>
+
+      <div class="preset-grid" id="presetGrid"></div>
+
+      <button class="btn btn-accent" id="scanAllBtn">Tüm Kategorileri Tara</button>
+    </section>
+
+    <section class="profit-calc">
+      <h3>Marj Hesaplayıcı</h3>
+      <div class="calc-row">
+        <label>eBay satış fiyatı ($) <input type="number" id="sellPrice" step="0.01" placeholder="19.99"></label>
+        <label>AliExpress maliyet ($) <input type="number" id="costPrice" step="0.01" placeholder="4.50"></label>
+        <button class="btn btn-sm" id="calcBtn">Hesapla</button>
+      </div>
+      <div class="calc-result" id="calcResult"></div>
+    </section>
+
+    <section class="results-section">
+      <div class="results-header">
+        <h3 id="resultsTitle">Sonuçlar</h3>
+        <span class="results-count" id="resultsCount"></span>
+      </div>
+      <div class="loading hidden" id="loading">
+        <div class="spinner"></div>
+        <p>Ürünler taranıyor, eBay karşılaştırması yapılıyor...</p>
+      </div>
+      <div class="results-grid" id="resultsGrid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>LuckyDropshipping — Railway üzerinde çalışır</p>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
